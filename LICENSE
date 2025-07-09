@@ -1,0 +1,52 @@
+MIT License
+
+Copyright (c) 2025 Regional Mark Processing Center (RMPC) - Saira Components
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+
+ADDITIONAL NOTICES:
+
+This repository contains extracted components and documentation from the 
+Regional Mark Processing Center (RMPC) system operated by the Pacific States 
+Marine Fisheries Commission (PSMFC).
+
+PRODUCTION SYSTEM NOTICE:
+The components documented in this repository are extracted from live production 
+systems supporting critical Pacific salmon management operations. Any use of 
+this information to access or modify production systems must comply with PSMFC 
+security policies and operational procedures.
+
+DATA PROTECTION NOTICE:
+Pacific salmon tracking data managed by this system is scientifically and 
+economically critical. Access to production data must comply with applicable 
+data protection regulations and agency agreements.
+
+ATTRIBUTION NOTICE:
+This system represents 50+ years of fisheries management expertise and 
+development effort by the Pacific States Marine Fisheries Commission and 
+contributing agencies. Please acknowledge this heritage in any derivative works.
+
+PRIMARY SYSTEM MAINTAINER:
+Jim Longwill (JRL) - Primary RMIS maintainer (2006-present)
+Pacific States Marine Fisheries Commission (PSMFC)
+
+For questions regarding production system access or operational procedures,
+contact: rmpcdb.admin@psmfc.org

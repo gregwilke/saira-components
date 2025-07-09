@@ -1,0 +1,38 @@
+                                                        Table "rmisdb.locations_042"
+      Column      |          Type          | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+------------------+------------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ record_code      | character(1)           |           | not null |                   | extended |             |              | 
+ format_version   | character varying(4)   |           | not null |                   | extended |             |              | 
+ submission_date  | date                   |           | not null |                   | plain    |             |              | 
+ reporting_agency | character varying(10)  |           | not null |                   | extended |             |              | 
+ location_code    | character varying(19)  |           |          |                   | extended |             |              | 
+ location_type    | character(1)           |           | not null |                   | extended |             |              | 
+ name             | character varying(25)  |           | not null |                   | extended |             |              | 
+ latitude         | double precision       |           |          |                   | plain    |             |              | 
+ longitude        | double precision       |           |          |                   | plain    |             |              | 
+ psc_basin        | character varying(5)   |           |          |                   | extended |             |              | 
+ psc_region       | character varying(5)   |           |          |                   | extended |             |              | 
+ epa_reach        | character varying(18)  |           |          |                   | extended |             |              | 
+ description      | character varying(100) |           | not null |                   | extended |             |              | 
+ location_key     | integer                |           | not null |                   | plain    |             |              | 
+ state            | character varying(2)   |           | not null |                   | extended |             |              | 
+ rmis_latitude    | double precision       |           |          |                   | plain    |             |              | 
+ rmis_longitude   | double precision       |           |          |                   | plain    |             |              | 
+ rmis_ll_source   | character varying(2)   |           |          |                   | extended |             |              | 
+ rmis_ll_accuracy | character(1)           |           |          |                   | extended |             |              | 
+ rmis_notes       | character varying(500) |           |          |                   | extended |             |              | 
+ rmis_region      | character varying(5)   |           |          |                   | extended |             |              | 
+ rmis_basin       | character varying(5)   |           |          |                   | extended |             |              | 
+ rmis_reach       | character varying(18)  |           |          |                   | extended |             |              | 
+ hatchid          | integer                |           |          |                   | plain    |             |              | 
+ referenced       | character(1)           |           | not null |                   | extended |             |              | 
+ record_origin    | character(1)           |           | not null |                   | extended |             |              | 
+ id               | uuid                   |           |          | gen_random_uuid() | plain    |             |              | 
+Indexes:
+    "locations_042_pkey" PRIMARY KEY, btree (location_key)
+    "idx_locations_042_id" btree (id)
+    "locations_042_x1" UNIQUE, btree (location_code, location_type)
+    "locations_042_x2" btree (name)
+    "locations_042_x3" btree (rmis_region, rmis_basin, location_type)
+Access method: heap
+

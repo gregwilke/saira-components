@@ -1,0 +1,57 @@
+                                                             Table "rmisdb.catch_sample_042"
+             Column             |         Type          | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+--------------------------------+-----------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ record_code                    | character(1)          |           | not null |                   | extended |             |              | 
+ format_version                 | character varying(4)  |           | not null |                   | extended |             |              | 
+ submission_date                | date                  |           | not null |                   | plain    |             |              | 
+ reporting_agency               | character varying(10) |           | not null |                   | extended |             |              | 
+ sampling_agency                | character varying(10) |           |          |                   | extended |             |              | 
+ catch_sample_id                | character varying(10) |           | not null |                   | extended |             |              | 
+ species                        | character varying(2)  |           | not null |                   | extended |             |              | 
+ catch_year                     | smallint              |           | not null |                   | plain    |             |              | 
+ period_type                    | character varying(2)  |           | not null |                   | extended |             |              | 
+ period                         | character varying(2)  |           | not null |                   | extended |             |              | 
+ first_period                   | character varying(2)  |           |          |                   | extended |             |              | 
+ last_period                    | character varying(2)  |           |          |                   | extended |             |              | 
+ fishery                        | character varying(3)  |           | not null |                   | extended |             |              | 
+ adclip_selective_fishery       | character(1)          |           |          |                   | extended |             |              | 
+ estimation_level               | character(1)          |           |          |                   | extended |             |              | 
+ catch_location_key             | integer               |           | not null |                   | plain    |             |              | 
+ detection_method               | character(1)          |           | not null |                   | extended |             |              | 
+ sample_type                    | character(1)          |           | not null |                   | extended |             |              | 
+ sampled_maturity               | character(1)          |           |          |                   | extended |             |              | 
+ sampled_run                    | character varying(2)  |           |          |                   | extended |             |              | 
+ sampled_length_range           | character varying(8)  |           |          |                   | extended |             |              | 
+ sampled_sex                    | character(1)          |           |          |                   | extended |             |              | 
+ sampled_mark                   | character varying(4)  |           |          |                   | extended |             |              | 
+ number_caught                  | bigint                |           |          |                   | plain    |             |              | 
+ escapement_estimation_method   | character varying(2)  |           |          |                   | extended |             |              | 
+ number_sampled                 | bigint                |           |          |                   | plain    |             |              | 
+ number_cwt_estimated           | double precision      |           |          |                   | plain    |             |              | 
+ number_recovered_decoded       | bigint                |           |          |                   | plain    |             |              | 
+ number_recovered_no_cwts       | integer               |           |          |                   | plain    |             |              | 
+ number_recovered_lost_cwts     | integer               |           |          |                   | plain    |             |              | 
+ number_recovered_unreadable    | integer               |           |          |                   | plain    |             |              | 
+ number_recovered_unresolved    | integer               |           |          |                   | plain    |             |              | 
+ number_recovered_not_processed | bigint                |           |          |                   | plain    |             |              | 
+ number_recovered_pseudotags    | integer               |           |          |                   | plain    |             |              | 
+ mr_1st_partition_size          | bigint                |           | not null |                   | plain    |             |              | 
+ mr_1st_sample_size             | bigint                |           | not null |                   | plain    |             |              | 
+ mr_1st_sample_known_ad_status  | bigint                |           |          |                   | plain    |             |              | 
+ mr_1st_sample_obs_adclips      | bigint                |           |          |                   | plain    |             |              | 
+ mr_2nd_partition_size          | bigint                |           |          |                   | plain    |             |              | 
+ mr_2nd_sample_size             | bigint                |           |          |                   | plain    |             |              | 
+ mr_2nd_sample_known_ad_status  | bigint                |           |          |                   | plain    |             |              | 
+ mr_2nd_sample_obs_adclips      | bigint                |           |          |                   | plain    |             |              | 
+ mark_rate                      | real                  |           |          |                   | plain    |             |              | 
+ awareness_factor               | real                  |           |          |                   | plain    |             |              | 
+ sport_mark_incidence_sampl_siz | bigint                |           |          |                   | plain    |             |              | 
+ sport_mark_inc_sampl_obs_adcli | integer               |           |          |                   | plain    |             |              | 
+ record_origin                  | character(1)          |           | not null |                   | extended |             |              | 
+ id                             | uuid                  |           |          | gen_random_uuid() | plain    |             |              | 
+Indexes:
+    "catch_sample_042_x1" btree (reporting_agency, catch_year)
+    "catch_sample_042_x2" btree (catch_location_key)
+    "idx_catch_sample_042_id" btree (id)
+Access method: heap
+

@@ -1,0 +1,59 @@
+                                                           Table "rmisdb.recoveries_042"
+          Column          |         Type          | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+--------------------------+-----------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ record_code              | character(1)          |           | not null |                   | extended |             |              | 
+ format_version           | character varying(4)  |           | not null |                   | extended |             |              | 
+ submission_date          | date                  |           | not null |                   | plain    |             |              | 
+ reporting_agency         | character varying(10) |           | not null |                   | extended |             |              | 
+ sampling_agency          | character varying(10) |           |          |                   | extended |             |              | 
+ recovery_id              | character varying(10) |           | not null |                   | extended |             |              | 
+ species                  | character varying(2)  |           | not null |                   | extended |             |              | 
+ run_year                 | smallint              |           | not null |                   | plain    |             |              | 
+ recovery_date_year       | smallint              |           | not null |                   | plain    |             |              | 
+ recovery_date_month      | smallint              |           |          |                   | plain    |             |              | 
+ recovery_date_day        | smallint              |           |          |                   | plain    |             |              | 
+ recovery_date_week       | smallint              |           |          |                   | plain    |             |              | 
+ recovery_date_type       | character(1)          |           |          |                   | extended |             |              | 
+ period_type              | character varying(2)  |           |          |                   | extended |             |              | 
+ period                   | character varying(2)  |           |          |                   | extended |             |              | 
+ fishery                  | character varying(3)  |           | not null |                   | extended |             |              | 
+ gear                     | character varying(6)  |           |          |                   | extended |             |              | 
+ adclip_selective_fishery | character(1)          |           |          |                   | extended |             |              | 
+ estimation_level         | character(1)          |           |          |                   | extended |             |              | 
+ recovery_location_code   | character varying(19) |           | not null |                   | extended |             |              | 
+ recovery_location_key    | integer               |           | not null |                   | plain    |             |              | 
+ sampling_site            | character varying(4)  |           |          |                   | extended |             |              | 
+ recorded_mark            | character varying(4)  |           |          |                   | extended |             |              | 
+ sex                      | character(1)          |           |          |                   | extended |             |              | 
+ weight                   | real                  |           |          |                   | plain    |             |              | 
+ weight_code              | character(1)          |           |          |                   | extended |             |              | 
+ weight_type              | character(1)          |           |          |                   | extended |             |              | 
+ length                   | smallint              |           |          |                   | plain    |             |              | 
+ length_code              | character(1)          |           |          |                   | extended |             |              | 
+ length_type              | character(1)          |           |          |                   | extended |             |              | 
+ detection_method         | character(1)          |           |          |                   | extended |             |              | 
+ tag_status               | character(1)          |           | not null |                   | extended |             |              | 
+ tag_code                 | character varying(12) |           |          |                   | extended |             |              | 
+ tag_type                 | character varying(2)  |           |          |                   | extended |             |              | 
+ sequential_number        | integer               |           |          |                   | plain    |             |              | 
+ sequential_column_number | smallint              |           |          |                   | plain    |             |              | 
+ sequential_row_number    | smallint              |           |          |                   | plain    |             |              | 
+ catch_sample_id          | character varying(10) |           |          |                   | extended |             |              | 
+ sample_type              | character(1)          |           | not null |                   | extended |             |              | 
+ sampled_maturity         | character(1)          |           |          |                   | extended |             |              | 
+ sampled_run              | character varying(2)  |           |          |                   | extended |             |              | 
+ sampled_length_range     | character varying(8)  |           |          |                   | extended |             |              | 
+ sampled_sex              | character(1)          |           |          |                   | extended |             |              | 
+ sampled_mark             | character varying(4)  |           |          |                   | extended |             |              | 
+ number_cwt_estimated     | double precision      |           |          |                   | plain    |             |              | 
+ record_origin            | character(1)          |           | not null |                   | extended |             |              | 
+ id                       | uuid                  |           |          | gen_random_uuid() | plain    |             |              | 
+Indexes:
+    "idx_recoveries_042_id" btree (id)
+    "recoveries_042_x1" btree (tag_code)
+    "recoveries_042_x2" btree (recovery_location_key)
+    "recoveries_042_x3" btree (fishery)
+    "recoveries_042_x4" btree (recovery_date_year, reporting_agency)
+    "recoveries_042_x5" btree (run_year, reporting_agency)
+Access method: heap
+

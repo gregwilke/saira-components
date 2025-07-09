@@ -1,0 +1,100 @@
+                                         View "rmisdb.query_csv_rc_042"
+            Column             |         Type          | Collation | Nullable | Default | Storage  | Description 
+-------------------------------+-----------------------+-----------+----------+---------+----------+-------------
+ record_code                   | character(1)          |           |          |         | extended | 
+ format_version                | character varying(4)  |           |          |         | extended | 
+ submission_date               | text                  |           |          |         | extended | 
+ reporting_agency              | character varying(10) |           |          |         | extended | 
+ sampling_agency               | character varying(10) |           |          |         | extended | 
+ recovery_id                   | character varying(10) |           |          |         | extended | 
+ species                       | character varying(2)  |           |          |         | extended | 
+ run_year                      | smallint              |           |          |         | plain    | 
+ recovery_date                 | text                  |           |          |         | extended | 
+ recovery_date_type            | character(1)          |           |          |         | extended | 
+ period_type                   | character varying(2)  |           |          |         | extended | 
+ period                        | character varying(2)  |           |          |         | extended | 
+ fishery                       | character varying(3)  |           |          |         | extended | 
+ gear                          | character varying(6)  |           |          |         | extended | 
+ adclip_selective_fishery      | character(1)          |           |          |         | extended | 
+ estimation_level              | character(1)          |           |          |         | extended | 
+ recovery_location_code        | character varying(19) |           |          |         | extended | 
+ sampling_site                 | character varying(4)  |           |          |         | extended | 
+ recorded_mark                 | character varying(4)  |           |          |         | extended | 
+ sex                           | character(1)          |           |          |         | extended | 
+ weight                        | real                  |           |          |         | plain    | 
+ weight_code                   | character(1)          |           |          |         | extended | 
+ weight_type                   | character(1)          |           |          |         | extended | 
+ length                        | smallint              |           |          |         | plain    | 
+ length_code                   | character(1)          |           |          |         | extended | 
+ length_type                   | character(1)          |           |          |         | extended | 
+ detection_method              | character(1)          |           |          |         | extended | 
+ tag_status                    | character(1)          |           |          |         | extended | 
+ tag_code                      | character varying(12) |           |          |         | extended | 
+ tag_type                      | character varying(2)  |           |          |         | extended | 
+ sequential_number             | integer               |           |          |         | plain    | 
+ sequential_column_number      | smallint              |           |          |         | plain    | 
+ sequential_row_number         | smallint              |           |          |         | plain    | 
+ catch_sample_id               | character varying(10) |           |          |         | extended | 
+ sample_type                   | character(1)          |           |          |         | extended | 
+ sampled_maturity              | character(1)          |           |          |         | extended | 
+ sampled_run                   | character varying(2)  |           |          |         | extended | 
+ sampled_length_range          | character varying(8)  |           |          |         | extended | 
+ sampled_sex                   | character(1)          |           |          |         | extended | 
+ sampled_mark                  | character varying(4)  |           |          |         | extended | 
+ number_cwt_estimated          | double precision      |           |          |         | plain    | 
+ recovery_location_name        | character varying(25) |           |          |         | extended | 
+ recovery_date_year            | smallint              |           |          |         | plain    | 
+ recovery_location_key         | integer               |           |          |         | plain    | 
+ record_origin                 | character(1)          |           |          |         | extended | 
+ recovery_location_rmis_region | character varying(5)  |           |          |         | extended | 
+View definition:
+ SELECT r.record_code,
+    r.format_version,
+    to_char(r.submission_date::timestamp with time zone, 'YYYYMMDD'::text) AS submission_date,
+    r.reporting_agency,
+    r.sampling_agency,
+    r.recovery_id,
+    r.species,
+    r.run_year,
+    (to_char(r.recovery_date_year::double precision, 'FM0000'::text) || COALESCE(to_char(r.recovery_date_month::double precision, 'FM00'::text), ''::text)) || COALESCE(to_char(r.recovery_date_day::double precision, 'FM00'::text), ''::text) AS recovery_date,
+    r.recovery_date_type,
+    r.period_type,
+    r.period,
+    r.fishery,
+    r.gear,
+    r.adclip_selective_fishery,
+    r.estimation_level,
+    l.location_code AS recovery_location_code,
+    r.sampling_site,
+    r.recorded_mark,
+    r.sex,
+    r.weight,
+    r.weight_code,
+    r.weight_type,
+    r.length,
+    r.length_code,
+    r.length_type,
+    r.detection_method,
+    r.tag_status,
+    r.tag_code,
+    r.tag_type,
+    r.sequential_number,
+    r.sequential_column_number,
+    r.sequential_row_number,
+    r.catch_sample_id,
+    r.sample_type,
+    r.sampled_maturity,
+    r.sampled_run,
+    r.sampled_length_range,
+    r.sampled_sex,
+    r.sampled_mark,
+    r.number_cwt_estimated,
+    l.name AS recovery_location_name,
+    r.recovery_date_year,
+    r.recovery_location_key,
+    r.record_origin,
+    l.rmis_region AS recovery_location_rmis_region
+   FROM recoveries_042 r,
+    locations_042 l
+  WHERE r.recovery_location_key = l.location_key;
+

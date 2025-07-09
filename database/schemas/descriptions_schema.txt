@@ -1,0 +1,19 @@
+                                                       Table "rmisdb.descriptions_042"
+      Column       |          Type           | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+-------------------+-------------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ record_code       | character(1)            |           | not null |                   | extended |             |              | 
+ format_version    | character varying(4)    |           | not null |                   | extended |             |              | 
+ submission_date   | date                    |           | not null |                   | plain    |             |              | 
+ reporting_agency  | character varying(10)   |           | not null |                   | extended |             |              | 
+ submission_status | character(1)            |           | not null |                   | extended |             |              | 
+ file_type         | character varying(2)    |           | not null |                   | extended |             |              | 
+ file_status       | character(1)            |           | not null |                   | extended |             |              | 
+ first_year        | smallint                |           |          |                   | plain    |             |              | 
+ last_year         | smallint                |           |          |                   | plain    |             |              | 
+ description       | character varying(2000) |           |          |                   | extended |             |              | 
+ record_origin     | character(1)            |           | not null |                   | extended |             |              | 
+ id                | uuid                    |           |          | gen_random_uuid() | plain    |             |              | 
+Indexes:
+    "idx_descriptions_042_id" btree (id)
+Access method: heap
+

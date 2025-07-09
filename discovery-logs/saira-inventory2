@@ -1,0 +1,79 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.07.08 17:09:53 =~=~=~=~=~=~=~=~=~=~=~=
+login as: greg
+greg@saira.psmfc.org's password: 
+
+ System information as of Tue Jul  8 05:09:52 PM PDT 2025
+
+  System load:  0.13                Processes:              276
+  Usage of /:   56.8% of 147.09GB   Users logged in:        1
+  Memory usage: 12%                 IPv4 address for ens33: 10.2.14.85
+  Swap usage:   4%
+
+  => There is 1 zombie process.
+
+[0;31m==========================================
+[0m ____    _    ___ ____      _    
+/ ___|  / \  |_ _|  _ \    / \   
+\___ \ / _ \  | || |_) |  / _ \  
+ ___) / ___ \ | ||  _ <  / ___ \ 
+|____/_/   \_\___|_| \_\/_/   \_\
+                                 
+[0;31m==========================================
+[0mThis system is restricted to authorized PSMFC personnel and affiliates. 
+By proceeding and logging into this PSMFC system, 
+you agree to abide by the terms of PSMFC's Electronic Communication Policy (located in the Personnel Handbook). 
+Use of this system constitutes consent to monitoring. 
+Monitoring may be conducted for the protection against improper or unauthorized use or access. 
+Users are responsible for ensuring that they act in accordance with policies and legislation applicable to the PSMFC network. 
+Unauthorized access or use of the system is strictly prohibited.
+[0;31m===============================================================================================================================
+[0m
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+1 additional security update can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+*** System restart required ***
+This system is restricted to authorized PSMFC personnel and affiliates. 
+By proceeding and logging into this PSMFC system, 
+you agree to abide by the terms of PSMFC's Electronic Communication Policy (located in the Personnel Handbook). 
+Use of this system constitutes consent to monitoring. 
+Monitoring may be conducted for the protection against improper or unauthorized use or access. 
+Users are responsible for ensuring that they act in accordance with policies and legislation applicable to the PSMFC network. 
+Unauthorized access or use of the system is strictly prohibited.
+This system is restricted to authorized PSMFC personnel and affiliates. 
+By proceeding and logging into this PSMFC system, 
+you agree to abide by the terms of PSMFC's Electronic Communication Policy (located in the Personnel Handbook). 
+Use of this system constitutes consent to monitoring. 
+Monitoring may be conducted for the protection against improper or unauthorized use or access. 
+Users are responsible for ensuring that they act in accordance with policies and legislation applicable to the PSMFC network. 
+Unauthorized access or use of the system is strictly prohibited.
+Last login: Tue Jul  8 16:58:16 2025 from 10.2.3.116
+Could not chdir to home directory /home/PSMFC.ORG/greg: No such file or directory
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+[?2004hgreg@saira:/$ [7msudo -u postgres pg_dump --schema-only rpro > rpro_schema.sql[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo -u postgres pg_dump --schema-only rpro > rpro_schema.sql
+[?2004l-bash: rpro_schema.sql: Permission denied
+[?2004hgreg@saira:/$ [7m sudo tar -czf saira-processing-scripts.tar.gz -C /home rmpcdb/[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C sudo tar -czf saira-processing-scripts.tar.gz -C /home rmpcdb/
+[?2004l[sudo] password for greg: 
+[?2004hgreg@saira:/$ [7msudo tar -czf saira-rmpcdb-crons.tar.gz -C /etc cron.rmpcdb*[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo tar -czf saira-rmpcdb-crons.tar.gz -C /etc cron.rmpcdb*
+[?2004ltar: cron.rmpcdb*: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+[?2004hgreg@saira:/$ [7m sudo cp /usr/local/sbin/qrun ./[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C sudo cp /usr/local/sbin/qrun ./
+[A
+[?2004l[?2004hgreg@saira:/$ [7msudo cp /usr/local/sbin/qrun ./[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo cp /usr/local/sbin/qrun ./
+[?2004l[?2004hgreg@saira:/$ [7msudo find /usr/local -name "*queue*" -o -name "*qrun*" 2>/dev/null[27m [A[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo find /usr/local -name "*queue*" -o -name "*qrun*" 2>/dev/null [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kl
+[?2004l/usr/local/sbin/qrun
+[?2004hgreg@saira:/$ [7msudo find /home -name "*.sql" -exec tar -czf saira-sql-scripts.tar[27m[7m.[27m[7mgz {} +[27m[A[C[C[C[C[C[Csudo find /home -name "*.sql" -exec tar -czf saira-sql-scripts.tar.gz {} +
+[?2004lfind: ‘/home/tran/up/.sys’: Permission denied
+tar: Removing leading `/' from member names
+tar: Removing leading `/' from hard link targets
+tar: Removing leading `/' from member names
+tar: Removing leading `/' from hard link targets
+[?2004hgreg@saira:/$ exit
+[?2004llogout

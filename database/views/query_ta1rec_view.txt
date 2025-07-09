@@ -1,0 +1,321 @@
+                                         View "rmisdb.query_ta1rec_042"
+            Column             |         Type          | Collation | Nullable | Default | Storage  | Description 
+-------------------------------+-----------------------+-----------+----------+---------+----------+-------------
+ tag_code                      | character varying(12) |           |          |         | extended | 
+ cwt_mark_count                | integer               |           |          |         | plain    | 
+ hatchery_location_name        | character varying(25) |           |          |         | extended | 
+ species_name                  | character varying(9)  |           |          |         | extended | 
+ run                           | character varying(2)  |           |          |         | extended | 
+ brood_year                    | smallint              |           |          |         | plain    | 
+ catch_sample_id               | character varying(10) |           |          |         | extended | 
+ fishery                       | character varying(3)  |           |          |         | extended | 
+ recovery_date_year            | smallint              |           |          |         | plain    | 
+ recovery_location_code        | character varying(19) |           |          |         | extended | 
+ recovery_location_name        | character varying(25) |           |          |         | extended | 
+ reporting_agency              | character varying(10) |           |          |         | extended | 
+ run_year                      | smallint              |           |          |         | plain    | 
+ sample_type                   | character(1)          |           |          |         | extended | 
+ species                       | character varying(2)  |           |          |         | extended | 
+ y1973_est                     | double precision      |           |          |         | plain    | 
+ y1974_est                     | double precision      |           |          |         | plain    | 
+ y1975_est                     | double precision      |           |          |         | plain    | 
+ y1976_est                     | double precision      |           |          |         | plain    | 
+ y1977_est                     | double precision      |           |          |         | plain    | 
+ y1978_est                     | double precision      |           |          |         | plain    | 
+ y1979_est                     | double precision      |           |          |         | plain    | 
+ y1980_est                     | double precision      |           |          |         | plain    | 
+ y1981_est                     | double precision      |           |          |         | plain    | 
+ y1982_est                     | double precision      |           |          |         | plain    | 
+ y1983_est                     | double precision      |           |          |         | plain    | 
+ y1984_est                     | double precision      |           |          |         | plain    | 
+ y1985_est                     | double precision      |           |          |         | plain    | 
+ y1986_est                     | double precision      |           |          |         | plain    | 
+ y1987_est                     | double precision      |           |          |         | plain    | 
+ y1988_est                     | double precision      |           |          |         | plain    | 
+ y1989_est                     | double precision      |           |          |         | plain    | 
+ y1990_est                     | double precision      |           |          |         | plain    | 
+ y1991_est                     | double precision      |           |          |         | plain    | 
+ y1992_est                     | double precision      |           |          |         | plain    | 
+ y1993_est                     | double precision      |           |          |         | plain    | 
+ y1994_est                     | double precision      |           |          |         | plain    | 
+ y1995_est                     | double precision      |           |          |         | plain    | 
+ y1996_est                     | double precision      |           |          |         | plain    | 
+ y1997_est                     | double precision      |           |          |         | plain    | 
+ y1998_est                     | double precision      |           |          |         | plain    | 
+ y1999_est                     | double precision      |           |          |         | plain    | 
+ y2000_est                     | double precision      |           |          |         | plain    | 
+ y2001_est                     | double precision      |           |          |         | plain    | 
+ y2002_est                     | double precision      |           |          |         | plain    | 
+ y2003_est                     | double precision      |           |          |         | plain    | 
+ y2004_est                     | double precision      |           |          |         | plain    | 
+ y2005_est                     | double precision      |           |          |         | plain    | 
+ y2006_est                     | double precision      |           |          |         | plain    | 
+ y2007_est                     | double precision      |           |          |         | plain    | 
+ y2008_est                     | double precision      |           |          |         | plain    | 
+ y2009_est                     | double precision      |           |          |         | plain    | 
+ y2010_est                     | double precision      |           |          |         | plain    | 
+ y2011_est                     | double precision      |           |          |         | plain    | 
+ y2012_est                     | double precision      |           |          |         | plain    | 
+ y2013_est                     | double precision      |           |          |         | plain    | 
+ y2014_est                     | double precision      |           |          |         | plain    | 
+ y2015_est                     | double precision      |           |          |         | plain    | 
+ y2016_est                     | double precision      |           |          |         | plain    | 
+ y2017_est                     | double precision      |           |          |         | plain    | 
+ y2018_est                     | double precision      |           |          |         | plain    | 
+ y2019_est                     | double precision      |           |          |         | plain    | 
+ y2020_est                     | double precision      |           |          |         | plain    | 
+ y2021_est                     | double precision      |           |          |         | plain    | 
+ y2022_est                     | double precision      |           |          |         | plain    | 
+ y2023_est                     | double precision      |           |          |         | plain    | 
+ y2024_est                     | double precision      |           |          |         | plain    | 
+ y2025_est                     | double precision      |           |          |         | plain    | 
+ tot_est                       | double precision      |           |          |         | plain    | 
+ recovery_location_key         | integer               |           |          |         | plain    | 
+ tag_status                    | character(1)          |           |          |         | extended | 
+ recovery_location_rmis_region | character varying(5)  |           |          |         | extended | 
+ recorded_mark                 | character varying(4)  |           |          |         | extended | 
+ sampling_agency               | character varying(10) |           |          |         | extended | 
+View definition:
+ SELECT r.tag_code,
+    COALESCE(rl.cwt_1st_mark_count, 0) + COALESCE(rl.cwt_2nd_mark_count, 0) AS cwt_mark_count,
+    rl.hatchery_location_name,
+    s.species_name,
+    rl.run,
+    rl.brood_year,
+    r.catch_sample_id,
+    r.fishery,
+    r.recovery_date_year,
+    l.location_code AS recovery_location_code,
+    l.name AS recovery_location_name,
+    r.reporting_agency,
+    r.run_year,
+    r.sample_type,
+    r.species,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y73::double precision AS y1973_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y74::double precision AS y1974_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y75::double precision AS y1975_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y76::double precision AS y1976_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y77::double precision AS y1977_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y78::double precision AS y1978_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y79::double precision AS y1979_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y80::double precision AS y1980_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y81::double precision AS y1981_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y82::double precision AS y1982_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y83::double precision AS y1983_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y84::double precision AS y1984_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y85::double precision AS y1985_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y86::double precision AS y1986_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y87::double precision AS y1987_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y88::double precision AS y1988_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y89::double precision AS y1989_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y90::double precision AS y1990_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y91::double precision AS y1991_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y92::double precision AS y1992_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y93::double precision AS y1993_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y94::double precision AS y1994_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y95::double precision AS y1995_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y96::double precision AS y1996_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y97::double precision AS y1997_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y98::double precision AS y1998_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y99::double precision AS y1999_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y00::double precision AS y2000_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y01::double precision AS y2001_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y02::double precision AS y2002_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y03::double precision AS y2003_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y04::double precision AS y2004_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y05::double precision AS y2005_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y06::double precision AS y2006_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y07::double precision AS y2007_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y08::double precision AS y2008_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y09::double precision AS y2009_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y10::double precision AS y2010_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y11::double precision AS y2011_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y12::double precision AS y2012_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y13::double precision AS y2013_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y14::double precision AS y2014_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y15::double precision AS y2015_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y16::double precision AS y2016_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y17::double precision AS y2017_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y18::double precision AS y2018_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y19::double precision AS y2019_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y20::double precision AS y2020_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y21::double precision AS y2021_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y22::double precision AS y2022_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y23::double precision AS y2023_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y24::double precision AS y2024_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END * y.y25::double precision AS y2025_est,
+        CASE
+            WHEN r.number_cwt_estimated = 0::double precision THEN NULL::double precision
+            ELSE r.number_cwt_estimated
+        END AS tot_est,
+    r.recovery_location_key,
+    r.tag_status,
+    l.rmis_region AS recovery_location_rmis_region,
+    r.recorded_mark,
+    r.sampling_agency
+   FROM recoveries_042 r,
+    releases_042 rl,
+    species s,
+    year_matrix y,
+    locations_042 l
+  WHERE r.tag_code::text = rl.tag_code_or_release_id::text AND rl.species::text = s.species::text AND r.recovery_date_year = y.year AND r.recovery_location_key = l.location_key;
+

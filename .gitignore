@@ -1,0 +1,33 @@
+# Saira Components Git Ignore
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archive extraction temporary directories
+temp/
+tmp/
+
+# Sensitive configuration (if any gets added)
+*.env
+secrets/
+private/
+
+# Large extracted archives (keep archives, ignore extractions)
+extracted-archives/
+
+# Database dumps (if generated)
+*.sql.gz
+*.dump

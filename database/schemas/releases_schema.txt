@@ -1,0 +1,91 @@
+                                                              Table "rmisdb.releases_042"
+            Column            |          Type          | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+------------------------------+------------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ record_code                  | character(1)           |           | not null |                   | extended |             |              | 
+ format_version               | character varying(4)   |           | not null |                   | extended |             |              | 
+ submission_date              | date                   |           | not null |                   | plain    |             |              | 
+ reporting_agency             | character varying(10)  |           | not null |                   | extended |             |              | 
+ release_agency               | character varying(10)  |           | not null |                   | extended |             |              | 
+ coordinator                  | character varying(2)   |           | not null |                   | extended |             |              | 
+ tag_code_or_release_id       | character varying(12)  |           | not null |                   | extended |             |              | 
+ tag_type                     | character varying(2)   |           |          |                   | extended |             |              | 
+ first_sequential_number      | integer                |           |          |                   | plain    |             |              | 
+ last_sequential_number       | integer                |           |          |                   | plain    |             |              | 
+ related_group_type           | character(1)           |           |          |                   | extended |             |              | 
+ related_group_id             | character varying(15)  |           |          |                   | extended |             |              | 
+ species                      | character varying(2)   |           | not null |                   | extended |             |              | 
+ run                          | character varying(2)   |           |          |                   | extended |             |              | 
+ brood_year                   | smallint               |           | not null |                   | plain    |             |              | 
+ first_release_date_year      | smallint               |           |          |                   | plain    |             |              | 
+ first_release_date_month     | smallint               |           |          |                   | plain    |             |              | 
+ first_release_date_day       | smallint               |           |          |                   | plain    |             |              | 
+ last_release_date_year       | smallint               |           |          |                   | plain    |             |              | 
+ last_release_date_month      | smallint               |           |          |                   | plain    |             |              | 
+ last_release_date_day        | smallint               |           |          |                   | plain    |             |              | 
+ release_location_code        | character varying(19)  |           |          |                   | extended |             |              | 
+ hatchery_location_code       | character varying(19)  |           |          |                   | extended |             |              | 
+ stock_location_code          | character varying(19)  |           |          |                   | extended |             |              | 
+ release_stage                | character(1)           |           |          |                   | extended |             |              | 
+ rearing_type                 | character(1)           |           | not null |                   | extended |             |              | 
+ study_type                   | character(1)           |           |          |                   | extended |             |              | 
+ release_strategy             | character varying(2)   |           |          |                   | extended |             |              | 
+ avg_weight                   | real                   |           |          |                   | plain    |             |              | 
+ avg_length                   | integer                |           |          |                   | plain    |             |              | 
+ study_integrity              | character(1)           |           |          |                   | extended |             |              | 
+ cwt_1st_mark                 | character varying(4)   |           |          |                   | extended |             |              | 
+ cwt_1st_mark_count           | integer                |           |          |                   | plain    |             |              | 
+ cwt_2nd_mark                 | character varying(4)   |           |          |                   | extended |             |              | 
+ cwt_2nd_mark_count           | integer                |           |          |                   | plain    |             |              | 
+ non_cwt_1st_mark             | character varying(4)   |           |          |                   | extended |             |              | 
+ non_cwt_1st_mark_count       | integer                |           |          |                   | plain    |             |              | 
+ non_cwt_2nd_mark             | character varying(4)   |           |          |                   | extended |             |              | 
+ non_cwt_2nd_mark_count       | integer                |           |          |                   | plain    |             |              | 
+ counting_method              | character(1)           |           |          |                   | extended |             |              | 
+ tag_loss_rate                | real                   |           |          |                   | plain    |             |              | 
+ tag_loss_days                | smallint               |           |          |                   | plain    |             |              | 
+ tag_loss_sample_size         | integer                |           |          |                   | plain    |             |              | 
+ tag_reused                   | character(1)           |           |          |                   | extended |             |              | 
+ comments                     | character varying(200) |           |          |                   | extended |             |              | 
+ release_location_name        | character varying(25)  |           |          |                   | extended |             |              | 
+ hatchery_location_name       | character varying(25)  |           |          |                   | extended |             |              | 
+ stock_location_name          | character varying(25)  |           |          |                   | extended |             |              | 
+ release_location_key         | integer                |           |          |                   | plain    |             |              | 
+ hatchery_location_key        | integer                |           |          |                   | plain    |             |              | 
+ stock_location_key           | integer                |           |          |                   | plain    |             |              | 
+ release_location_state       | character varying(2)   |           |          |                   | extended |             |              | 
+ release_location_rmis_region | character varying(5)   |           |          |                   | extended |             |              | 
+ release_location_rmis_basin  | character varying(5)   |           |          |                   | extended |             |              | 
+ tagged_adclipped             | bigint                 |           |          |                   | plain    |             |              | 
+ tagged_unclipped             | bigint                 |           |          |                   | plain    |             |              | 
+ untagged_adclipped           | bigint                 |           |          |                   | plain    |             |              | 
+ untagged_unclipped           | bigint                 |           |          |                   | plain    |             |              | 
+ untagged_unknown             | bigint                 |           |          |                   | plain    |             |              | 
+ repeating_series_number      | character varying(2)   |           |          |                   | extended |             |              | 
+ midyear                      | character(1)           |           | not null |                   | extended |             |              | 
+ record_origin                | character(1)           |           | not null |                   | extended |             |              | 
+ id                           | uuid                   |           |          | gen_random_uuid() | plain    |             |              | 
+Indexes:
+    "idx_releases_042_id" btree (id)
+    "releases_042_x01" UNIQUE, btree (tag_code_or_release_id)
+    "releases_042_x02" btree (species)
+    "releases_042_x03" btree (run)
+    "releases_042_x04" btree (brood_year)
+    "releases_042_x05" btree (last_release_date_year)
+    "releases_042_x06" btree (release_agency)
+    "releases_042_x07" btree (study_type)
+    "releases_042_x08" btree (release_stage)
+    "releases_042_x09" btree (rearing_type)
+    "releases_042_x10" btree (release_location_state)
+    "releases_042_x11" btree (release_location_rmis_region)
+    "releases_042_x12" btree (release_location_rmis_basin)
+    "releases_042_x13" btree (release_location_name)
+    "releases_042_x14" btree (hatchery_location_name)
+    "releases_042_x15" btree (stock_location_name)
+    "releases_042_x16" btree (release_location_code)
+    "releases_042_x17" btree (hatchery_location_code)
+    "releases_042_x18" btree (stock_location_code)
+    "releases_042_x19" btree (release_location_key)
+    "releases_042_x20" btree (hatchery_location_key)
+    "releases_042_x21" btree (stock_location_key)
+Access method: heap
+
