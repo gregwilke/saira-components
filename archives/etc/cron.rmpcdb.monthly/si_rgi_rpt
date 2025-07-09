@@ -1,0 +1,31 @@
+#!/bin/bash
+#################################################################################
+# Module     :  si_rgi_rpt.sh
+# Description:  Calls the si_rgi_rpt.pl program to generate the 
+#               "Single_Instances_of_Related_Group_IDs" Data Integrity Report.
+#               Runs from daily, weekly, or monthly cron process by copying this
+#               file to the /etc/cron.rmpc.daily, weekly, or monthly directory
+#################################################################################
+# -------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20040825  Created 
+# DLW  20050607  Removed the reference to the sid program.  The sid program
+#                was suspended Jan 12, 2005.  This program has failed since. 
+# DLW  20070502  Moved the reports from the reports directory to it_reports
+# DLW  20130906  Corrected tmp file si_rpi_rpt to si_rgi_rpt
+# DLW  20151110  Copied from aurora to rufus and Modified for Postgres/New Server
+# DLW  20210601  Replace ftp link with https
+# DLW  20241021  Changed #!/bin/sh #!/bin/bash above
+#****************************************************************************
+TMPFILE=/tmp/si_rgi_rpt$$
+#. /home/rmpcdb/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+si_rgi_rpt.pl > $TMPFILE 2>&1
+#echo "Report at: ftp://ftp.rmis.org/pub/it_reports/Single_Instances_of_Related_Group_IDs.rpt" > $TMPFILE 2>&1
+echo "Report at: https://www.rmpc.org/pub/di_reports/Single_Instances_of_Related_Group_IDs.rpt" > $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Data Integrity Report: Single_Instances_of_Related_Group_IDs output " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+rm -f  $TMPFILE

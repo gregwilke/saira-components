@@ -1,0 +1,28 @@
+#!/bin/bash
+#################################################################################
+# Module     :  missing_region_basin_rpt.sh
+# Description:  Calls the missing_region_basin_rpt.pl program to generate the 
+#               "Missing_Region_Basin" Data Integrity Report.
+#               Runs from daily, weekly, or monthly cron process by copying this
+#               file to the /etc/cron.rmpc.daily, weekly, or monthly directory
+#################################################################################
+# -------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20050712  Created 
+# DLW  20070502  Moved the reports from the reports directory to it_reports
+# DLW  20151110  Copied from aurora to rufus and Modified for Postgres/New Server
+# DLW  20210601  Replace ftp link with https
+# DLW  20241011  Changed #!/bin/sh #!/bin/bash above
+#****************************************************************************
+TMPFILE=/tmp/missing_rmpc_region_basin_rpt$$
+#. /home/rmpcdb/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+missing_region_basin_rpt.pl > $TMPFILE 2>&1
+#echo "Report at: ftp://ftp.rmis.org/pub/it_reports/Missing_Region_Basin.rpt" > $TMPFILE 2>&1
+echo "Report at: https://www.rmpc.org/pub/di_reports/Missing_Region_Basin.rpt" > $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Data Integrity Report: Missing_Region_Basin output " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+rm -f  $TMPFILE

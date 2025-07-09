@@ -1,0 +1,28 @@
+#!/bin/bash
+#################################################################################
+# Module     :  rc_length_gt_1600_rpt.sh
+# Description:  Calls the rc_length_gt_1600_rpt.pl program to generate the 
+#               "Recovery_Lengths_Greater_Than_1600" Data Integrity Report.
+#               Runs from daily, weekly, or monthly cron process by copying this
+#               file to the /etc/cron.rmpc.daily, weekly, or monthly directory
+#################################################################################
+# -------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20051013  Created 
+# DLW  20070502  Moved the reports from the reports directory to it_reports
+# DLW  20151110  Copied from aurora to rufus and Modified for Postgres/New Server
+# DLW  20210601  Replace ftp link with https
+# DLW  20241021  Changed #!/bin/sh #!/bin/bash above
+#****************************************************************************
+TMPFILE=/tmp/si_rpi_rpt$$
+#. /home/rmpcdb/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+rc_length_gt_1600_rpt.pl > $TMPFILE 2>&1
+#echo "Report at: ftp://ftp.rmis.org/pub/it_reports/Recovery_Lengths_Greater_Than_1600.rpt" > $TMPFILE 2>&1
+echo "Report at: https://www.rmpc.org/pub/di_reports/Recovery_Lengths_Greater_Than_1600.rpt" > $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Data Integrity Report: Recovery_Lengths_Greater_Than_1600 output " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+rm -f  $TMPFILE

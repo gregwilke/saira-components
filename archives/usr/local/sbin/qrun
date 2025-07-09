@@ -1,0 +1,47 @@
+#!/bin/env perl
+#========================================================
+#
+#  qrun - Run the at "at" queue with a "atrun" if their are
+#         no jobs running.  This program is used to make
+#         sure jobs are single threaded, next one runs
+#         when the prev. one finishes.
+#
+#         For this to work the "atd" cannot be running.
+#========================================================
+
+require "/usr/local/lib/filelock.pl";
+
+$LOCKFILE = "/var/tmp/qrun.lk";
+$DEBUG = 0;
+$timeNow = time;
+
+## Grab a Lock - If unable to, exit.
+if (! &getLock($LOCKFILE,10)) {
+#    if ( &getLockContents($LOCKFILE, *lockPid, *lockTime) ) {
+#	print "Time of lock = $lockTime   Time of run = $timeNow\n";
+#    }
+    exit;
+}
+
+## Check for a running process (queue of "=" when running atq)
+## If finds one exit
+open(ATQ, "/usr/bin/atq |") or die "Could not open /usr/bin/atq:$!\n";
+while ($inline = <ATQ>) {
+    chomp;
+    # ($qNum,$qDate,$qTime,$qQueue,$qUser) = split;
+    #if ($qQueue eq '=') {
+    if ($inline =~ /\=/) {
+	close ATQ;
+	exit;
+    }
+}
+close ATQ;
+
+#
+## If we got this far, we can now run the "atrun" command...
+## This will submit the next job in the queue (if there is one)
+system "/usr/sbin/atrun -l 3.0";
+
+#
+## Unlock.
+&rmLock($LOCKFILE);

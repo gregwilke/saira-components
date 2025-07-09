@@ -1,0 +1,20 @@
+#
+#   KoneaChecker - crontab file 
+#
+#   Currently scheduled to run every 10 minutes starting at 5 minutes after the hour.
+#
+#   The environment passed by cron doesn't have /sbin in the path so we must pass
+#   a path to the command when running it so that startup/shutdown commands can
+#   be found.
+#
+#   Uncomment line below for testing if you want it to run every minute.
+#
+# *  * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+#
+00 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+10 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+20 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+30 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+40 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+50 * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog -k
+

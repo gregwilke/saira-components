@@ -1,0 +1,12 @@
+#
+#   AMPWatchDog - crontab file 
+#
+#   Currently scheduled to run every 6 hours.
+#
+#   Uncomment line below for testing if you want it to run every minute.
+# *  * * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog
+#
+05 03 * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog
+05 09 * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog
+05 15 * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog
+05 21 * * * root PATH=/usr/bin:/bin:/sbin:/usr/sbin /opt/quest/kace/bin/AMPWatchDog

@@ -1,0 +1,27 @@
+#!/bin/bash
+#################################################################################
+# Module     :  rc_coastal_hatcheries.sh 
+# Description:  Calls the rc_coastal_hatcheries.pl program to generate the 
+#               "Coastal_Hatcheries_Recoveries.rpt" Data Integrity Report.
+#               Runs from daily, weekly, or monthly cron process by copying this
+#               file to the /etc/cron.rmpc.daily, weekly, or monthly directory
+#################################################################################
+# -------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20110209  Created 
+# DLW  20151110  Copied from aurora to rufus and Modified for Postgres/New Server
+# DLW  20210601  Replace ftp link with https
+# DLW  20241021  Changed #!/bin/sh #!/bin/bash above
+#****************************************************************************
+TMPFILE=/tmp/si_rpi_rpt$$
+#. /home/rmpcdb/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+rc_coastal_hatcheries.pl $TMPFILE 2>&1
+#echo "Report at: ftp://ftp.rmpc.org/pub/it_reports/Coastal_Hatcheries_Recoveries.rpt" > $TMPFILE 2>&1
+echo "Report at: https://www.rmpc.org/pub/di_reports/Coastal_Hatcheries_Recoveries.rpt" > $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Data Integrity Report: Coastal Hatcheries Recoveries output " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+rm -f  $TMPFILE

@@ -1,0 +1,25 @@
+#!/bin/bash
+#################################################################################
+# Module     :  rc_salmon_wt_gt_allowed.sh
+# Description:  Calls the rc_salmon_wt_gt_allowed.pl program to generate the 
+#               "Recovery_Salmon_WT_GT_Allowed" Data Integrity Report.
+#               Runs from daily, weekly, or monthly cron process by copying this
+#               file to the /etc/cron.rmpc.daily, weekly, or monthly directory
+#################################################################################
+# -------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  202300518  Created 
+# DLW  20241021  Changed #!/bin/sh #!/bin/bash above
+#****************************************************************************
+TMPFILE=/tmp/si_rpi_rpt$$
+#. /home/rmpcdb/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+rc_salmon_wt_gt_allowed.pl > $TMPFILE 2>&1
+#echo "Report at: ftp://ftp.rmis.org/pub/it_reports/Recovery_Lengths_Greater_Than_1300.rpt" > $TMPFILE 2>&1
+echo "Report at: https://www.rmpc.org/pub/di_reports/Recovery_Salmon_WT_GT_Allowed.rpt" > $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Data Integrity Report: Recovery_Salmon_Weight_Greater_Than_Allowed output " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+rm -f  $TMPFILE

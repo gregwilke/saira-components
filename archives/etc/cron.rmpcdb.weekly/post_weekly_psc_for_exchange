@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# *****************************************************************************
+# Name:          post_weekly_psc_for_exchange.sh 
+# Description:   Copies data files created within last 7 days from 
+#                /usr/pub_horus/data/ to CDFO /home/cdfodata/out and
+#                generates notification emails
+#
+#                Runs from /etc/cron.rmpc.weekly/ on Sundays
+#
+# *****************************************************************************
+# Program History for Format Ver 4.2
+# INT  DATE      Comments
+# ---  ----      -------
+# DLW  20230628  Begin modifiacations for Format Ver 4.2
+#                Change 041 to 042
+# DLW  20231201  Updated program name to better reflect it's use
+# DLW  20231204  Copy all weekly files to cdfodata/out instead of just
+#                "ALL" files for LC, RL & DD
+# -----------------------------------------------------------------------------
+# Program History:
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20140624  Created
+# JRL  20161025  Modified to add dd/Descriptions file
+# DLW  20170314  Redirect $POSTACCT and MAILTO temporarily for agency acronym
+#                renaming project to avoid flooding /home/ridgwayb/out/ 
+# DLW  20170420  Redirect $POSTACCT and MAILTO back to ridgwayb account
+# DLW  20171130  Replace "ridgwayb" account with "cdfodata"
+#                Replace MAILTO with MAILTO="XPACCWTDataAdmin@dfo-mpo.gc.ca"
+# DWL  20180209  Update to meet PSV Ver 4/1 Filenaming conventions
+# DWL  20210121  Replace MAILTO with MAILTO="cdfodata@psmfc.org"
+#                On 20210120 Brenda Ridgway requested changes since the email 
+#                address they provided on 20171130 is not working on thier end
+# DWL  20210121  Replace MAILTO with 
+#                MAILTO="DFO.FPACCWTDataAdmin-AdmindedonneesEFCPACF.MPO@dfo-mpo.gc.ca"
+# JRL  20241016  Removed .sh extension for run-parts invocation on Ubuntu 24.04
+# DLW  20241029  Changed #!/bin/sh to #!/bin/bash above
+# -----------------------------------------------------------------------------
+
+. /usr/local/bin/set_env_vars.sh
+LISTFILE="/tmp/post_file_list.txt"
+POSTACCT="/home/cdfodata/out/"
+MAILTO="DFO.FPACCWTDataAdmin-AdmindedonneesEFCPACF.MPO@dfo-mpo.gc.ca"
+MAILFROM="rmpcdb.admin@psmfc.org"
+echo "The weekly post job for PSC Data Exchange is complete. " > $LISTFILE 
+echo "The following data files can be found in your PSC Out Directory $POSTACCT " >> $LISTFILE 
+echo " " >> $LISTFILE
+
+#find $CWT_POST_DATA -type f -mtime -7 -name "LC042_ALL*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+#find $CWT_POST_DATA -type f -mtime -7 -name "RL042_ALL*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+#find $CWT_POST_DATA -type f -mtime -7 -name "DD042_ALL*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+find $CWT_POST_DATA -type f -mtime -7 -name "LC042_*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+find $CWT_POST_DATA -type f -mtime -7 -name "RL042_*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+find $CWT_POST_DATA -type f -mtime -7 -name "DD042_*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+find $CWT_POST_DATA -type f -mtime -7 -name "CS042_*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+find $CWT_POST_DATA -type f -mtime -7 -name "RC042_*" -exec cp {} $POSTACCT \; -exec basename {} >> $LISTFILE \;
+
+n_files=`wc -l $LISTFILE | awk '{print $1}'`
+
+if [ $n_files -lt 4 ]; then
+  echo "No New Data Files Posted This Week" >> $LISTFILE 
+fi
+
+   mailtofrom -t $MAILTO -f $MAILFROM -s "Weekly PSC Data Exchange results" < $LISTFILE
+   mailtofrom -t $MAILFROM -f $MAILFROM -s "Weekly PSC Data Exchange results" < $LISTFILE
+
+exit

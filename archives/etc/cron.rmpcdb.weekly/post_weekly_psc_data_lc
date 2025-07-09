@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# *****************************************************************************
+# Name:          post_weekly_psc_data_lc.sh 
+# Description:   Calls the post_weekly_psc_data.pl program to create CSV copy of 
+#                Locations Table in /usr/pub_horus/data/ 
+#
+#                Runs from /etc/cron.rmpc.weekly/ on Sundays
+#
+# *****************************************************************************
+# Program History for Format Ver 4.2
+# INT  DATE      Comments
+# ---  ----      -------
+# DLW  20230628  Begin modifiacations for Format Ver 4.2
+#                Change 041 to 042
+# DLW  20231201  Updated program name to relect intended use
+# DLW  20240516  Moved /usr/pub on Gilli to /usr/pub_horus on Horus
+#
+# -----------------------------------------------------------------------------
+# Program History Prior to Format Ver 4.2
+# INT  DATE      Comments
+# ---  --------  --------
+# DLW  20070504  Created 
+# DLW  20140527  Corrected TMPFILE name
+# DLW  20151110  Copied from aurora to rufus and Modified for Postgres/New Server
+# DLW  20180209  Updated to meet PSC V4.1 filenaming conventions
+# JRL  20241016  Removed .sh extension for run-parts invocation on Ubuntu 24.04
+# DLW  20241029  Changed #!/bin/sh to #!/bin/bash above
+# -----------------------------------------------------------------------------
+TMPFILE=/tmp/post_weekly_psc_data_lc$$
+#. /home/rmpc/.bash_profile > $TMPFILE 2>&1
+. /usr/local/bin/set_env_vars.sh
+post_weekly_psc_data.pl rpro lc ALL FULLSET LC042_ALL_FULLSET > $TMPFILE 2>&1
+echo "Datafile output at: http://www.rmpc.org/pub/data/" >> $TMPFILE 2>&1
+if [ -s $TMPFILE ]; then 
+  mail -s "Weekly Locations data file created: /usr/pub_horus/data/LC042_ALL_FULLSET.csv " rmpcdb.admin@psmfc.org < $TMPFILE 
+fi
+#rm -f  $TMPFILE
